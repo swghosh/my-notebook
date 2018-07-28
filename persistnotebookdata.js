@@ -1,12 +1,9 @@
 const notebookDataDownload = {
     hostname: 'storage.googleapis.com',
     path: '/swg-personal/notebookdata.json',
-    method: 'GET',
-    headers: {
-        'Cache-Control': 'no-cache, max-age=0'
-    }
+    method: 'GET'
 }
-const oAuthToken = 'ya29.GlsGBuoP6kK8oHnjfGEn_z3ymm73oL__5uvGCss4SZuMjuRRNLdhgjyiXOoGQ9Bkma05Rx2_7YCQxJpmLtHwy4_yKUXZoYAU0_B496cfoRNeOI2LCnNs7wvz5GCg'
+const oAuthToken = 'ya29.GlsGBtBTj0nGGi4c4bNFjxYhBYZD0N1pALVDkr-MIy2yWEx6llphsv99z2A4kqyWWVs2-cv6CIhxtSLs-4h7vzPYAKpvbyaAz5n1iXsMg-has_soDETol0r1e2LD'
 const notebookDataUpload = {
     hostname: 'www.googleapis.com',
     path: '/upload/storage/v1/b/swg-personal/o?uploadType=media&name=notebookdata.json',

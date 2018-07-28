@@ -40,7 +40,7 @@ var produceResponse = (pathname, body, res) => {
         fs.createReadStream(path.join('static', 'readonly.html'), 'utf8').pipe(res)
     }
     else if(pathname == '/savenotebook') {
-        var notebookData = JSON.parse(body.trim())
+        var notebookData = JSON.parse(body)
         persistNotebookData.uploadNotebookData(notebookData, () => {
             res.writeHead(200, {
                 'Content-Type': mimeTypes['.txt']
