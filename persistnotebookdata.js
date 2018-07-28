@@ -1,49 +1,36 @@
-const notebookDataDownload = {
-    hostname: 'storage.googleapis.com',
-    path: '/swg-personal/datainsidenotebook.json',
-    method: 'GET'
-}
-const oAuthToken = 'ya29.GlsGBtBTj0nGGi4c4bNFjxYhBYZD0N1pALVDkr-MIy2yWEx6llphsv99z2A4kqyWWVs2-cv6CIhxtSLs-4h7vzPYAKpvbyaAz5n1iXsMg-has_soDETol0r1e2LD'
-const notebookDataUpload = {
-    hostname: 'www.googleapis.com',
-    path: '/upload/storage/v1/b/swg-personal/o?uploadType=media&name=datainsidenotebook.json',
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + oAuthToken
-    }
-}
+var Storage = require('@google-cloud/storage')
 
-var https = require('https')
+const bucketName = process.env.BUCKET_NAME || ''
+const fileName = 'datainsidenotebook.json'
+
+var bucket = new Storage().bucket(bucketName)
 
 exports.uploadNotebookData = (notebookData, callback) => {
-    var postData = Buffer.from(JSON.stringify(notebookData))
-    var options = notebookDataUpload
-    options.headers['Content-Length'] = postData.length
 
-    var request = https.request(options, (res) => {
-        var data = ''
+    notebookData = JSON.stringify(notebookData)
 
-        res.on('data', (chunk) => {
-            data += chunk
-        })
-
-        res.on('end', () => {
-            callback(data)
-        })
+    var file = bucket.file(fileName)
+    var writeStream = file.createWriteStream({
+        metadata: {
+            contentType: 'application/json'
+        }
     })
-    request.write(postData.toString('binary'))
-    request.end()
+    
+    writeStream.on('finish', () => {
+        callback()
+    })
+    writeStream.end(notebookData)
 }
 
 exports.downloadNotebookData = (callback) => {
-    https.get(notebookDataDownload, (res) => {
-        var data = ''
-        res.on('data', (chunk) => {
-            data += chunk
-        })
-        res.on('end', () => {
-            callback(JSON.parse(data))
-        })
+    var file = bucket.file(fileName)
+    var readStream = file.createReadStream()
+
+    var notebookData = ''
+    readStream.on('data', (chunk) => {
+        notebookData += chunk
+    })
+    readStream.on('end', () => {
+        callback(JSON.parse(notebookData))
     })
 }
