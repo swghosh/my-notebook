@@ -4,6 +4,8 @@ var editorDiv = document.querySelector('div.editor')
 var lastSavedSpan = document.querySelector('span.lastsaved')
 
 function saveData(auto) {
+    lastSavedSpan.innerHTML = 'saving...'
+
     var request = new XMLHttpRequest()
     request.open('POST', '/savenotebook', true)
     request.onreadystatechange = function() {
@@ -36,8 +38,8 @@ function loadData() {
 
 loadData()
 
-function autoSave() {
-    saveData(true)
+function autoSaveEnable() {
+    setInterval(function() {
+        saveData(true)
+    }, 30000)
 }
-
-setInterval(autoSave, 30000)
