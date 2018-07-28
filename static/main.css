@@ -22,8 +22,9 @@ div.top {
 }
 
 div.title {
-    display: inline-block;
+    display: block;
     margin: 2%;
+    float: left;
 }
 
 button.savebutton {
@@ -41,6 +42,8 @@ button.savebutton {
 }
 
 span.lastsaved {
+    display: block;
+    float: left;
     text-transform: lowercase;
     font-size: 0.5em;
     padding: 0.5em;
