@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300');
+
+* {
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    margin: 0;
+}
+
+div.top {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    background-color: rgb(0, 152, 253);
+    min-height: 1.5em;
+    box-shadow: 0 0 10px gray;
+    font-size: 1.3em;
+    letter-spacing: 3px;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+div.title {
+    display: inline-block;
+    margin: 2%;
+}
+
+button.savebutton {
+    display: block;
+    letter-spacing: 2px;
+    font-size: 0.8em;
+    background-color: rgb(25, 98, 255);
+    padding: 0.4em;
+    box-shadow: 0 0 2px rgb(57, 95, 175);
+    float: right;
+    text-transform: uppercase;
+    border: none;
+    color: #fff;
+    margin: 1.5%;
+}
+
+span.lastsaved {
+    text-transform: lowercase;
+    font-size: 0.5em;
+    padding: 0.5em;
+    letter-spacing: 1px;
+    margin: 1%;
+}
+
+div.editor {
+    margin: 5%;
+    margin-top: 10em;
+    min-height: 60vh;
+    outline: none;
+}
+
+code {
+    display: block;
+    padding: 1%;
+    font-family: monospace;
+    font-size: 0.9em;
+    margin: 0;
+    background-color: rgb(219, 217, 217);
+    border-left: 3px solid black;
+}
