@@ -1,4 +1,3 @@
-service: mynotebook
 env: standard
 runtime: nodejs8
 
